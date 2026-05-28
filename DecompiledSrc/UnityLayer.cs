@@ -1,0 +1,21 @@
+public enum UnityLayer
+{
+	Default,
+	TransparentFX,
+	IgnoreRaycast,
+	Layer3,
+	Water,
+	UI,
+	Layer6,
+	Layer7,
+	Planet,
+	Floor,
+	BG,
+	BGStatic,
+	Camera,
+	Flash,
+	TopGlow,
+	FloorTemp,
+	Review,
+	WorkshopThumbnail
+}

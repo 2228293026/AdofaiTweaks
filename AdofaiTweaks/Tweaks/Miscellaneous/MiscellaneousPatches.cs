@@ -15,7 +15,7 @@ internal static class MiscellaneousPatches
     [SyncTweakSettings]
     private static MiscellaneousSettings Settings { get; set; }
 
-    [HarmonyPatch(typeof(CameraFilterPack_FX_Glitch1), "OnRenderImage")]
+    [HarmonyPatch(typeof(CameraFilterPack_NewGlitch1), "OnRenderImage")]
     private static class GlitchOnRenderImagePatch
     {
         // Flip happens in these time ranges:

@@ -1,0 +1,26 @@
+public enum Portal
+{
+	None,
+	EndOfLevel,
+	LastLevelPlayed,
+	CalibrationScene,
+	EditorScene,
+	CustomLevelsScene,
+	RDSteamPage,
+	PreviousLevel,
+	NextLevel,
+	LowerSpeed,
+	HigherSpeed,
+	GoToLevel,
+	GoToLevelSpeedTrial,
+	GoToWorldBossIfReached,
+	TaroDLCMapExit,
+	TaroDLCMap,
+	PuzzleTest,
+	Puzzle1,
+	Puzzle2,
+	Puzzle3,
+	TaroDLCMap3,
+	VegaDLCMap,
+	FoolJoker
+}

@@ -50,6 +50,10 @@ public static class TweakAssets
         assets =
             AssetBundle.LoadFromFile(
                 Path.Combine("Mods", "AdofaiTweaks", "adofai_tweaks.assets"));
+        if (assets == null) {
+            return;
+        }
+
         SymbolLangNormalFont = assets.LoadAsset<Font>("Assets/NanumGothic-Regular.ttf");
         KoreanBoldFont = assets.LoadAsset<Font>("Assets/NanumGothic-Bold.ttf");
         HandSprite = assets.LoadAsset<Sprite>("Assets/Hand.png");

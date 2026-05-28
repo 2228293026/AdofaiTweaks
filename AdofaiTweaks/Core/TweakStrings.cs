@@ -61,7 +61,7 @@ public static class TweakStrings
         } else {
             return (string)RD_STRING_GET.Invoke(
                 null,
-                new object[] { key, parameters, section });
+                new object[] { key, parameters });
         }
     }
 

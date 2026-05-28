@@ -1,0 +1,28 @@
+public enum TweenType
+{
+	Position,
+	PositionX,
+	PositionY,
+	PivotX,
+	PivotY,
+	Rotation,
+	Scale,
+	ScaleX,
+	ScaleY,
+	Color,
+	Opacity,
+	Parallax,
+	ParallaxOffsetX,
+	ParallaxOffsetY,
+	Glow,
+	MaxParticles,
+	ParticleLifetime,
+	ParticleSize,
+	ParticleRotation,
+	ParticleVelocityX,
+	ParticleVelocityY,
+	ParticleRadius,
+	ParticleEmissionRate,
+	ParticleSimulationSpeed,
+	ParticleArc
+}

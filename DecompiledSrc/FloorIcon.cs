@@ -1,0 +1,28 @@
+public enum FloorIcon
+{
+	None,
+	Snail,
+	DoubleSnail,
+	Rabbit,
+	DoubleRabbit,
+	Swirl,
+	SwirlCW,
+	SameSpeed,
+	OneVfx,
+	Vfx,
+	Checkpoint,
+	HoldArrowShort,
+	HoldArrowLong,
+	HoldReleaseShort,
+	HoldReleaseLong,
+	MultiPlanetTwo,
+	MultiPlanetThreeMore,
+	MultiPlanetThreeLess,
+	ForceNone,
+	AnimatedSnail,
+	AnimatedRabbit,
+	AnimatedDoubleSnail,
+	AnimatedDoubleRabbit,
+	Decoration,
+	Portal
+}

@@ -11,7 +11,7 @@ internal static class KeyViewerPatches
     [SyncTweakSettings]
     private static KeyViewerSettings Settings { get; set; }
 
-    [HarmonyPatch(typeof(scrController), "CountValidKeysPressed")]
+    [HarmonyPatch(typeof(scrPlayer), "CountValidKeysPressed")]
     private static class CountValidKeysPressedPatch
     {
         [HarmonyBefore("adofai_tweaks.key_limiter")]

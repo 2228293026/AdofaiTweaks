@@ -23,7 +23,7 @@ internal static class JudgmentVisualsPatches
             }
 
             float angleDiff = (float)(__instance.angle - __instance.targetExitAngle);
-            if (!__instance.controller.isCW) {
+            if (!__instance.planetarySystem.isCW) {
                 angleDiff *= -1;
             }
             if (RDC.auto) {
@@ -42,7 +42,7 @@ internal static class JudgmentVisualsPatches
         }
     }
 
-    [HarmonyPatch(typeof(scrController), "ShowHitText")]
+    [HarmonyPatch(typeof(scrHitTextManager), "ShowHitText")]
     private static class ControllerShowHitTextPatch
     {
         public static bool Prefix(HitMargin hitMargin) {

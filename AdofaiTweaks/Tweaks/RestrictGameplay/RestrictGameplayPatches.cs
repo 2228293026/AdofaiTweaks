@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using AdofaiTweaks.Core;
 using AdofaiTweaks.Core.Attributes;
+using DG.Tweening;
 using HarmonyLib;
 using JetBrains.Annotations;
 using UnityEngine.UI;
@@ -93,7 +94,7 @@ internal static class RestrictGameplayPatches
                     break;
 
                 case RestrictGameplayAction.NoRegister:
-                    // Just don't do anything
+                    hideMarginText = true;
                     break;
             }
         }
@@ -152,23 +153,32 @@ internal static class RestrictGameplayPatches
     private static class SwitchChosenInstantRestartTriggerPatch
     {
         [UsedImplicitly]
-        public static void Postfix() {
+        public static void Postfix(scrPlanet __instance) {
             if (!shouldFailPlayer) {
                 return;
             }
             shouldFailPlayer = false;
 
+            bool origNoFail = Controller.noFail;
+            Controller.noFail = false;
+            Controller.instantExplode = true;
+
             if (shouldInstantRestart) {
-                // Force instantExplode fast fail even if no-fail is on
-                bool origNoFail = Controller.noFail;
-                Controller.noFail = false;
-                Controller.instantExplode = true;
+                // Transition to Fail state, then immediately to Fail2
+                // so Fail2_Update runs and our FastPatch restarts
                 Controller.FailAction();
-                Controller.noFail = origNoFail;
+                Controller.Fail2Action();
             } else {
-                // Fail with an "overload", text is changed later
-                Controller.FailAction(true);
+                // KillPlayer: force the player to die, which triggers
+                // death animation, overload text, and Fail2Action callback
+                if (__instance.player != null && __instance.player.alive) {
+                    __instance.player.Die(overload: true);
+                } else {
+                    Controller.FailAction(true);
+                }
             }
+
+            Controller.noFail = origNoFail;
         }
     }
 
@@ -190,13 +200,13 @@ internal static class RestrictGameplayPatches
             Controller.instantExplode = false;
 
             if (scnEditor.instance != null) {
-                object[] resetParams = AdofaiTweaks.ReleaseNumber >= 110 ? [true] : [];
+                object[] resetParams = AdofaiTweaks.ReleaseNumber >= 110 ? new object[] { true } : new object[0];
                 __instance.StartCoroutine(
                     (IEnumerator)ResetCustomLevelMethod.Invoke(
                         __instance,
                         resetParams));
             } else {
-                object[] resetParams = AdofaiTweaks.ReleaseNumber >= 110 ? [false] : [];
+                object[] resetParams = AdofaiTweaks.ReleaseNumber >= 110 ? new object[] { false } : new object[0];
                 RestartMethod.Invoke(__instance, resetParams);
             }
             return false;
@@ -215,8 +225,8 @@ internal static class RestrictGameplayPatches
         public static void Postfix(scrCountdown __instance, Text ___text) {
             AdofaiTweaks.Logger.Log("ShowOverload!");
             if (failActionInvokeReason != FailReason.None) {
-                failActionInvokeReason = FailReason.None;
                 ___text.text = failActionInvokeReason.GetCustomFailActionMessage();
+                failActionInvokeReason = FailReason.None;
             }
         }
     }
@@ -224,7 +234,7 @@ internal static class RestrictGameplayPatches
     [UsedImplicitly]
     [TweakPatch(
         "RestrictGameplay.ControllerShowHitText",
-        "scrController",
+        "scrHitTextManager",
         "ShowHitText",
         MinVersion = 80)]
     private static class ControllerShowHitTextPatch

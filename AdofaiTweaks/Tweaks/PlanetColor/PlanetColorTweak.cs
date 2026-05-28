@@ -53,14 +53,14 @@ public class PlanetColorTweak : Tweak
     }
 
     private static void LoadPlanetColorWithRenderer(scrPlanet planet) {
-        planet.planetarySystem.ColorPlanets();
+        planet.planetRenderer.SetColor(planet.planetRenderer.planetColor);
     }
 
     private static readonly MethodInfo ScrPlanetLoadPlanetColorMethod =
         AccessTools.Method(typeof(scrPlanet), "LoadPlanetColor");
 
     private static void LoadPlanetColor(scrPlanet planet) {
-        ScrPlanetLoadPlanetColorMethod.Invoke(planet, []);
+        ScrPlanetLoadPlanetColorMethod.Invoke(planet, null);
     }
 
     private static void UpdatePlanetColors() {
