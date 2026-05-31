@@ -340,4 +340,55 @@ internal static class PlanetColorPatches
             return false;
         }
     }
+
+    [TweakPatch(
+        "PlanetColorPatches.RainbowModePostPlanetaryRefactor",
+        "PlanetarySystem",
+        "RainbowMode")]
+    private static class RainbowModePostPlanetaryRefactorPatch
+    {
+        public static bool Prefix() {
+            if (Red.Enabled) {
+                Persistence.SetPlayerColor(Red.Body.SolidColor, true);
+            }
+            if (Blue.Enabled) {
+                Persistence.SetPlayerColor(Blue.Body.SolidColor, false);
+            }
+            return false;
+        }
+    }
+
+    [TweakPatch(
+        "PlanetColorPatches.EnbyModePostPlanetaryRefactor",
+        "PlanetarySystem",
+        "EnbyMode")]
+    private static class EnbyModePostPlanetaryRefactorPatch
+    {
+        public static bool Prefix() {
+            if (Red.Enabled) {
+                Persistence.SetPlayerColor(Red.Body.SolidColor, true);
+            }
+            if (Blue.Enabled) {
+                Persistence.SetPlayerColor(Blue.Body.SolidColor, false);
+            }
+            return false;
+        }
+    }
+
+    [TweakPatch(
+        "PlanetColorPatches.TransModePostPlanetaryRefactor",
+        "PlanetarySystem",
+        "TransMode")]
+    private static class TransModePostPlanetaryRefactorPatch
+    {
+        public static bool Prefix() {
+            if (Red.Enabled) {
+                Persistence.SetPlayerColor(Red.Body.SolidColor, true);
+            }
+            if (Blue.Enabled) {
+                Persistence.SetPlayerColor(Blue.Body.SolidColor, false);
+            }
+            return false;
+        }
+    }
 }

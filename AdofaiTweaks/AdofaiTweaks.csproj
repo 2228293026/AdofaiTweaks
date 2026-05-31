@@ -239,6 +239,9 @@
     <RemoveDir Directories="$(TargetDir)" />
     <RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)" />
   </Target>
+  <Target Name="CopyAssets" AfterTargets="AfterBuild">
+    <Copy SourceFiles="..\UnityProject\Assets\AssetBundles\adofai_tweaks.assets" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+  </Target>
   <ItemGroup>
     <PackageReference Include="IndexRange" Version="1.0.3" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all" />

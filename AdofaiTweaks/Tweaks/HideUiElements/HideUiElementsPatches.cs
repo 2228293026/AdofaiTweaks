@@ -85,7 +85,7 @@ internal static class HideUiElementsPatches
         [HarmonyPatch(typeof(scrFlash), "Flash")]
         private static class HideLastFloorFlashPatch
         {
-            public static bool Prefix(ref Color _colorStart) {
+            public static bool Prefix(ref Color? _colorStart) {
                 if (shouldIgnoreFlashOnce && _colorStart == Color.white.WithAlpha(.4f)) {
                     return shouldIgnoreFlashOnce = false;
                 }

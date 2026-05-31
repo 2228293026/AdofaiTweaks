@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using UnityEngine;
 
 namespace AdofaiTweaks.Core;
@@ -44,12 +44,22 @@ public static class TweakAssets
     /// </summary>
     public static Sprite KeyBackgroundSprite { get; private set; }
 
-    private static readonly AssetBundle assets;
+    private static AssetBundle assets;
+    private static bool initialized;
 
-    static TweakAssets() {
-        assets =
-            AssetBundle.LoadFromFile(
-                Path.Combine("Mods", "AdofaiTweaks", "adofai_tweaks.assets"));
+    /// <summary>
+    /// Loads all assets from the mod's asset bundle. Must be called once
+    /// during mod startup, after the mod path is known.
+    /// </summary>
+    /// <param name="modPath">Full path to the mod directory.</param>
+    internal static void Initialize(string modPath) {
+        if (initialized) {
+            return;
+        }
+        initialized = true;
+
+        string path = Path.Combine(modPath, "adofai_tweaks.assets");
+        assets = AssetBundle.LoadFromFile(path);
         if (assets == null) {
             return;
         }

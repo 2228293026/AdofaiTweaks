@@ -58,6 +58,7 @@ public static class AdofaiTweaks
                 .ToList();
 
         Logger = modEntry.Logger;
+        TweakAssets.Initialize(modEntry.Path);
         synchronizer = new SettingsSynchronizer();
 
         synchronizer.Load(modEntry);
