@@ -441,3 +441,5 @@ credentials.json
 token.pickle
 /**/myenv
 /**/AdofaiTweaks.Strings.dll
+# ===== Game reference DLLs =====
+Libs/
