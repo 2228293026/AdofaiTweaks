@@ -241,6 +241,7 @@
   </Target>
   <Target Name="CopyAssets" AfterTargets="AfterBuild">
     <Copy SourceFiles="..\UnityProject\Assets\AssetBundles\adofai_tweaks.assets" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="..\AdofaiTweaks.Generator\TweakStrings.db" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
   </Target>
   <ItemGroup>
     <PackageReference Include="IndexRange" Version="1.0.3" />

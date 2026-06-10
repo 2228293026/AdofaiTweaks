@@ -14,20 +14,21 @@ internal static class Startup
     /// </summary>
     /// <param name="modEntry">UMM's mod entry for AdofaiTweaks.</param>
     internal static void Load(UnityModManager.ModEntry modEntry) {
-        LoadAssembly("Mods/AdofaiTweaks/AdofaiTweaks.Strings.dll");
-        LoadAssembly("Mods/AdofaiTweaks/AdofaiTweaks.Translation.dll");
-        LoadAssembly("Mods/AdofaiTweaks/LiteDB.dll");
-        LoadAssembly("Mods/AdofaiTweaks/System.Buffers.dll");
-        LoadAssembly("Mods/AdofaiTweaks/IndexRange.dll");
+        var modPath = modEntry.Path;
+        LoadAssembly(Path.Combine(modPath, "AdofaiTweaks.Strings.dll"));
+        LoadAssembly(Path.Combine(modPath, "AdofaiTweaks.Translation.dll"));
+        LoadAssembly(Path.Combine(modPath, "LiteDB.dll"));
+        LoadAssembly(Path.Combine(modPath, "System.Buffers.dll"));
+        LoadAssembly(Path.Combine(modPath, "IndexRange.dll"));
 
         if (TryLoadAssembly("A Dance of Fire and Ice_Data/Managed/SkyHook.Unity.dll")) {
-            LoadAssembly("Mods/AdofaiTweaks/AdofaiTweaks.Compat.AsyncSkyHook.dll");
+            LoadAssembly(Path.Combine(modPath, "AdofaiTweaks.Compat.AsyncSkyHook.dll"));
             modEntry.Logger.Log("Async assembly: SkyHook");
         } else if (TryLoadAssembly("A Dance of Fire and Ice_Data/Managed/SharpHook.dll")) {
-            LoadAssembly("Mods/AdofaiTweaks/AdofaiTweaks.Compat.AsyncSharpHook.dll");
+            LoadAssembly(Path.Combine(modPath, "AdofaiTweaks.Compat.AsyncSharpHook.dll"));
             modEntry.Logger.Log("Async assembly: SharpHook");
         } else {
-            LoadAssembly("Mods/AdofaiTweaks/AdofaiTweaks.Compat.AsyncPolyfill.dll");
+            LoadAssembly(Path.Combine(modPath, "AdofaiTweaks.Compat.AsyncPolyfill.dll"));
             modEntry.Logger.Log("Async assembly: Polyfill");
         }
 

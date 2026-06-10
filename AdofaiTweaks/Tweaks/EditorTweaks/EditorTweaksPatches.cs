@@ -225,7 +225,7 @@ internal static class EditorTweaksPatches
                 return;
             }
 
-            if (RDInput.holdingControl && RDInput.holdingAlt) {
+            if (RDInput.holdingAlt) {
                 var clockwiseRotationCommand = Input.GetKeyDown(KeyCode.Period);
                 var counterClockwiseRotationCommand = Input.GetKeyDown(KeyCode.Comma);
 
